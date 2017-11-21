@@ -1,6 +1,6 @@
 package com.example.pankaj.maukascholars.util;
 
-import com.example.pankaj.maukascholars.holders.FiltersViewHolder;
+import com.example.pankaj.maukascholars.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,6 +11,30 @@ import java.util.List;
  */
 
 public class Constants {
+    public static int[] imageResources = new int[]{
+            R.mipmap.bat,
+            R.mipmap.bear,
+            R.mipmap.bear,
+    };
+    public static String[] normal = new String[]{
+            "SHARE",
+            "SHORTLIST",
+            "SAVE"
+    };
+    public static String[] sub = new String[]{
+            "I should share it with others",
+            "Seems interesting! I'll decide later",
+            "Notify me of important updates"
+    };
+
+    public static int[] normal_color = new int[]{
+            0xff009688,
+            0xff03a9f4,
+            0xff795548,
+            0xffe91e63
+    };
+
+
     public static List<String> filters = new ArrayList<>(Arrays.asList(
             "Competitions",
             "Awards",

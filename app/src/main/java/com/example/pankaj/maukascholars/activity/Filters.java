@@ -5,26 +5,21 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.pankaj.maukascholars.R;
 import com.example.pankaj.maukascholars.adapters.FiltersAdapter;
-import com.example.pankaj.maukascholars.holders.FiltersViewHolder;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
-import com.google.android.flexbox.JustifyContent;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import static com.example.pankaj.maukascholars.util.Constants.filters;
 
 public class Filters extends AppCompatActivity {
 
-    ImageButton proceed, account, calendar;
+    ImageView proceed, account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +27,36 @@ public class Filters extends AppCompatActivity {
         setContentView(R.layout.activity_filters);
         proceed = findViewById(R.id.proceed);
         account = findViewById(R.id.account);
-        calendar = findViewById(R.id.calendar);
+//        calendar = findViewById(R.id.calendar);
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+            if (filters.size()>0) {
                 Intent intent = new Intent(Filters.this, Cards.class);
+                startActivity(intent);
+            }else{
+                Toast.makeText(Filters.this, "Please select at least one filter!", Toast.LENGTH_SHORT).show();
+            }
+            }
+        });
+        account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Filters.this, ProfileActivity.class);
                 startActivity(intent);
             }
         });
+//        calendar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                long startMillis = System.currentTimeMillis();
+//                Uri.Builder builder = CalendarContract.CONTENT_URI.buildUpon();
+//                builder.appendPath("time");
+//                ContentUris.appendId(builder, startMillis);
+//                Intent intent = new Intent(Intent.ACTION_VIEW).setData(builder.build());
+//                startActivity(intent);
+//            }
+//        });
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(this);
         layoutManager.setFlexWrap(FlexWrap.WRAP);

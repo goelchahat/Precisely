@@ -8,9 +8,6 @@ import android.widget.Button;
 import com.example.pankaj.maukascholars.R;
 import com.google.android.flexbox.FlexboxLayoutManager;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static com.example.pankaj.maukascholars.util.Constants.clickedFilters;
 
 /**
@@ -28,11 +25,11 @@ public class FiltersViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 if (clickedFilters.contains(getAdapterPosition())){
-                    clickedFilters.remove(getAdapterPosition());
-                    filter_button.setBackgroundColor(0xffffff);
+                    clickedFilters.remove(Integer.valueOf(getAdapterPosition()));
+                    filter_button.setBackgroundColor(0xFFFFFFFF);
                 }else{
                     clickedFilters.add(getAdapterPosition());
-                    filter_button.setBackgroundColor(0x469c58);
+                    filter_button.setBackgroundColor(0xFF61d6ff);
                 }
             }
         });
