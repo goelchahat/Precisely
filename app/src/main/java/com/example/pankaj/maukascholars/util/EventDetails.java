@@ -8,19 +8,23 @@ package com.example.pankaj.maukascholars.util;
  * Global Variables:	<>
  */
 public class EventDetails {
-    private String title = "Rupee marks the biggest gain in 4 years against US";
-    private String description = "The Indian rupee cheered the Moody's rating upgrade posted the biggest single-day gain in last lorem ipsum lorem ipsumlorem ipsumlorem ipsum";
-    private String name = "The Financial Express";
-    private String deadline = "Deadline: Dec 1 2017";
-    private String image = "R.mipmap.upnetwork";
-    private String icon = "R.mipmap.upnetwork";
-    private String link = "http://www.google.com";
+    private int id = 0;
+    private int starred = 0;
+    private int saved = 0;
+    private String title = "IIDA Student Design Competition";
+    private String description = "The Student Design Competition celebrates original design and rewards individuals and/or teams whose projects demonstrate innovative, functional design solutions that have a positive environmental and human impact, while allowing emerging professionals the opportunity to showcase their work and fresh design ideas to professionals working in the field.";
+    private String name = "Curated by Spot-on Opportunities";
+    private String deadline = "Deadline: 5 February, 2018";
+    private String image;
+    private String icon;
+    private String link = "http://www.iida.org/content.cfm/student-design-competition";
 
     public EventDetails(){
 
     }
 
-    public EventDetails(String title, String description, String name, String deadline, String image, String icon, String link){
+    public EventDetails(int id, int starred, int saved, String title, String description, String name, String deadline, String image, String icon, String link){
+        this.id = id;
         this.title = title;
         this.deadline = deadline;
         this.description = description;
@@ -29,6 +33,22 @@ public class EventDetails {
         this.image = image;
         this.icon = icon;
         this.link = link;
+    }
+
+    public EventDetails(int id, String title, String description, String name, String deadline, String image, String icon, String link){
+        this.id = id;
+        this.title = title;
+        this.deadline = deadline;
+        this.description = description;
+        this.name = name;
+        this.deadline = deadline;
+        this.image = image;
+        this.icon = icon;
+        this.link = link;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getDeadline() {
@@ -59,6 +79,18 @@ public class EventDetails {
         return title;
     }
 
+    public int getSaved() {
+        return saved;
+    }
+
+    public int getStarred() {
+        return starred;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setDeadline(String deadline) {
         this.deadline = deadline;
     }
@@ -85,5 +117,13 @@ public class EventDetails {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public void setSaved(int saved) {
+        this.saved = saved;
+    }
+
+    public void setStarred(int starred) {
+        this.starred = starred;
     }
 }

@@ -14,18 +14,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.pankaj.maukascholars.R;
-import com.example.pankaj.maukascholars.fragments.EventsAppliedFragment;
-import com.example.pankaj.maukascholars.fragments.FavouritesFragment;
-import com.example.pankaj.maukascholars.fragments.dummy.DummyContent;
+import com.example.pankaj.maukascholars.fragments.SavedFragment;
+import com.example.pankaj.maukascholars.fragments.StarredFragment;
+import com.example.pankaj.maukascholars.util.EventDetails;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProfileActivity extends AppCompatActivity implements EventsAppliedFragment.OnListFragmentInteractionListener, FavouritesFragment.OnListFragmentInteractionListener{
+public class ProfileActivity extends AppCompatActivity implements SavedFragment.OnListFragmentInteractionListener, StarredFragment.OnListFragmentInteractionListener{
 
     SharedPreferences sp;
-    EventsAppliedFragment eaf;
-    FavouritesFragment ff;
+    SavedFragment eaf;
+    StarredFragment ff;
 
 
     @Override
@@ -40,18 +40,22 @@ public class ProfileActivity extends AppCompatActivity implements EventsAppliedF
 
         TabLayout tabLayout =  findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.getTabAt(0).setIcon(R.mipmap.ap_resize);
-        tabLayout.getTabAt(1).setIcon(R.mipmap.history);
+//        tabLayout.getTabAt(0).setIcon(R.mipmap.ap_resize);
+//        tabLayout.getTabAt(1).setIcon(R.mipmap.history);
+//        tabLayout.getTabAt(0).setTag("Starred");
+//        tabLayout.getTabAt(0).setTag("History");
+        tabLayout.getTabAt(0).setText("Saved");
+        tabLayout.getTabAt(1).setText("Starred");
 
 //        viewPager.setCurrentItem(1);
     }
 
 
     public void setupViewPager(ViewPager upViewPager) {
-        eaf = new EventsAppliedFragment();
-        ff = new FavouritesFragment();
+        eaf = new SavedFragment();
+        ff = new StarredFragment();
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(eaf, "History");
+        adapter.addFragment(eaf, "Saved");
         adapter.addFragment(ff, "Starred");
         upViewPager.setAdapter(adapter);
     }
@@ -61,7 +65,7 @@ public class ProfileActivity extends AppCompatActivity implements EventsAppliedF
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(EventDetails item) {
 
     }
 

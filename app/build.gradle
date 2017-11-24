@@ -56,4 +56,6 @@ dependencies {
     compile 'in.srain.cube:ultra-ptr:1.0.11'
     compile 'com.github.elevenetc:textsurface:0.9.1'
     compile 'com.nightonke:boommenu:2.1.1'
+    compile 'com.android.volley:volley:1.0.0'
+
 }

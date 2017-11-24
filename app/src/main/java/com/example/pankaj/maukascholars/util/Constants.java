@@ -11,20 +11,25 @@ import java.util.List;
  */
 
 public class Constants {
+    public static String user_email = "pankaj11520@ducic.ac.in";
+
     public static int[] imageResources = new int[]{
             R.mipmap.bat,
             R.mipmap.bear,
             R.mipmap.bear,
+            R.mipmap.bat,
     };
     public static String[] normal = new String[]{
             "SHARE",
-            "SHORTLIST",
-            "SAVE"
+            "STAR",
+            "SAVE",
+            "SEND"
     };
     public static String[] sub = new String[]{
             "I should share it with others",
-            "Seems interesting! I'll decide later",
-            "Notify me of important updates"
+            "Seems interesting! I'll decide later though",
+            "Notify me of important updates",
+            "Send it to me via mail"
     };
 
     public static int[] normal_color = new int[]{
@@ -43,17 +48,16 @@ public class Constants {
             "Volunteering",
             "Scholarships ",
             "Fellowships ",
-            "Projects ",
             "Summer / Winter School",
             "Trainings",
             "Exchange Programs ",
-            "Admissions / Study ",
+            "Admissions",
             "Workshops",
             "Events",
             "Grants",
             "Financial Aid ",
             "Online Courses",
-            "Work Opportunities",
             "Jobs"));
+
     public static List<Integer> clickedFilters = new ArrayList<>();
 }

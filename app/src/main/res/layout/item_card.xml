@@ -7,7 +7,6 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:clickable="true"
-    android:foreground="?attr/selectableItemBackground"
     android:orientation="vertical"
     card_view:cardCornerRadius="5dp">
     <RelativeLayout
@@ -23,7 +22,9 @@
                 android:id="@+id/event_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@mipmap/banner"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/j_bezos"
                 />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -36,7 +37,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textColor="#000000"
                     android:maxLines="1"
                     android:ellipsize="end"
@@ -49,12 +50,13 @@
                     android:textColor="#DF101111"
                     android:maxLines="3"
                     android:ellipsize="end"
+                    android:layout_marginTop="2dp"
                     />
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
                     >
                     <ImageView
                         android:id="@+id/icon_poster"
@@ -66,7 +68,7 @@
                         android:id="@+id/name_poster"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="The Financial Express"
+                        android:text=""
                         android:textSize="12sp"
                         android:textColor="#101010"
                         android:paddingLeft="5dp"
@@ -87,7 +89,7 @@
                         android:id="@+id/date_posted"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Deadline: Dec 1 2017"
+                        android:text=""
                         android:textSize="12sp"
                         android:paddingLeft="5dp"
                         android:layout_toRightOf="@+id/pipe"
@@ -102,12 +104,13 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            app:bmb_buttonRadius="10dp"
+            app:bmb_buttonRadius="20dp"
+            app:bmb_shadowEffect="false"
             app:bmb_buttonEnum="ham"
-            app:bmb_piecePlaceEnum="piecePlace_ham_3"
-            app:bmb_buttonPlaceEnum="buttonPlace_ham_3"
+            app:bmb_normalColor="#FFFFFF"
             app:bmb_inList="true"
-            android:padding="6dp"
+            app:bmb_piecePlaceEnum="piecePlace_ham_4"
+            app:bmb_buttonPlaceEnum="buttonPlace_ham_4"
             />
     </RelativeLayout>
 </android.support.v7.widget.CardView>

@@ -29,7 +29,7 @@ public class FiltersAdapter extends RecyclerView.Adapter<FiltersViewHolder> {
     @Override
     public FiltersViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-        .inflate(R.layout.filter_item, parent, false);
+        .inflate(R.layout.item_filter, parent, false);
 
         return new FiltersViewHolder(view);
 

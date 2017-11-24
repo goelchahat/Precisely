@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/sop"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingTop="@dimen/text_margin"
+            >
+            <EditText
+                android:id="@+id/email_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email ID"
+                android:textColor="#000000"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/text_margin"
+                android:gravity="center_horizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                />
+                <EditText
+                    android:id="@+id/pass_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="password"
+                    android:textColor="#000000"
+                    android:inputType="textPassword"
+                    android:padding="@dimen/text_margin"
+                    android:layout_below="@+id/email_edit"
+                    android:gravity="center_horizontal"
+                    android:layout_alignLeft="@+id/email_edit"
+                    android:layout_alignRight="@+id/email_edit"
+                    />
+            <Button
+                android:id="@+id/sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sign Up"
+                android:textSize="18sp"
+                android:background="@drawable/border_button"
+                android:layout_marginTop="@dimen/text_margin"
+                android:layout_marginBottom="4dp"
+                android:layout_below="@+id/pass_edit"
+                android:layout_alignLeft="@+id/pass_edit"
+                android:layout_alignRight="@+id/pass_edit"
+                />
+        </RelativeLayout>
+    <Button
+        android:id="@+id/sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Already have an account? Sign In"
+        android:textColor="#ffffff"
+        android:layout_alignParentBottom="true"
+        android:textAllCaps="false"
+        android:background="@color/colorPrimary" />
+</RelativeLayout>

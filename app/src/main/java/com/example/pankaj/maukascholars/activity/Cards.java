@@ -1,5 +1,6 @@
 package com.example.pankaj.maukascholars.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,8 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pankaj.maukascholars.R;
+import com.example.pankaj.maukascholars.database.DBHandler;
+import com.example.pankaj.maukascholars.util.Constants;
 import com.example.pankaj.maukascholars.util.EventDetails;
 import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListener;
 import com.nightonke.boommenu.BoomButtons.HamButton;
@@ -53,7 +57,7 @@ public class Cards extends AppCompatActivity {
             }
         };
 
-        mAdapter = new CardViewAdapter(mItems, itemTouchListener);
+        mAdapter = new CardViewAdapter(this, mItems, itemTouchListener);
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
 
@@ -116,14 +120,17 @@ public class Cards extends AppCompatActivity {
     public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHolder> {
         private List<EventDetails> cards;
         private OnItemTouchListener onItemTouchListener;
+        private Context mContext;
 
-        CardViewAdapter(List<EventDetails> cards, OnItemTouchListener onItemTouchListener) {
+        CardViewAdapter(Context context, List<EventDetails> cards, OnItemTouchListener onItemTouchListener) {
             this.cards = cards;
             this.onItemTouchListener = onItemTouchListener;
+            mContext = context;
+
         }
 
-        HamButton.Builder getHamButtonBuilder(int h) {
-            HamButton.Builder hamB =new HamButton.Builder()
+        HamButton.Builder getHamButtonBuilder(int h, final int position) {
+            return new HamButton.Builder()
                     .normalImageRes(imageResources[h])
                     .normalText(normal[h])
                     .subNormalText(sub[h])
@@ -131,33 +138,73 @@ public class Cards extends AppCompatActivity {
                     .listener(new OnBMClickListener() {
                         @Override
                         public void onBoomButtonClick(int index) {
-                            Log.e("BMB", index+"");
+                            if (index == 0) {
+                                Intent sendIntent = new Intent();
+                                sendIntent.setAction(Intent.ACTION_SEND);
+                                sendIntent.putExtra(Intent.EXTRA_TEXT, "Hey! Found a great opportunity for you!\n" + cards.get(position).getLink());
+                                sendIntent.setType("text/plain");
+                                startActivity(sendIntent);
+                            }else if (index == 1){
+                                Log.e("BMBListener", " Star");
+                                starEvent(position);
+                            }else if (index == 2){
+                                Log.e("BMBListener", " Following");
+//                                TODO: Following
+                            }else if (index == 3){
+                                Log.e("BMBListener", "Send Mail");
+                                composeEmail(position);
+                            }
                         }
                     });
-            return hamB;
+        }
+
+        private void starEvent(int position) {
+            DBHandler db = new DBHandler(mContext);
+            if (db.getEvent(cards.get(position).getId()) != null){
+                Toast.makeText(mContext, "Already starred!", Toast.LENGTH_SHORT).show();
+            }else{
+                cards.get(position).setStarred(1);
+                Log.e("Setting position", "Starred");
+                db.addEvent(cards.get(position));
+                Log.e("Length: ", "" + db.getAllStarredEvents() + " is the number of starred events");
+            }
         }
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.swipable_cards, viewGroup, false);
+            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_card, viewGroup, false);
             return new ViewHolder(v);
         }
 
         @Override
         public void onBindViewHolder(ViewHolder viewHolder, int i) {
-            viewHolder.title.setText(cards.get(i).getTitle());
-            viewHolder.description.setText(cards.get(i).getDescription());
-            viewHolder.name.setText(cards.get(i).getName());
-            viewHolder.deadline.setText(cards.get(i).getDeadline());
+            int position = i;
+            viewHolder.title.setText(cards.get(position).getTitle());
+            viewHolder.description.setText(cards.get(position).getDescription());
+            viewHolder.name.setText(cards.get(position).getName());
+            viewHolder.deadline.setText(cards.get(position).getDeadline());
             viewHolder.bmb.clearBuilders();
             for (int h = 0; h < viewHolder.bmb.getPiecePlaceEnum().pieceNumber(); h++) {
-                viewHolder.bmb.addBuilder(getHamButtonBuilder(h));
+                viewHolder.bmb.addBuilder(getHamButtonBuilder(h, position));
             }
         }
 
         @Override
         public int getItemCount() {
             return cards == null ? 0 : cards.size();
+        }
+
+        private void composeEmail(int position) {
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+            intent.putExtra(Intent.EXTRA_EMAIL, Constants.user_email);
+            intent.putExtra(Intent.EXTRA_SUBJECT, cards.get(position).getTitle());
+            intent.putExtra(Intent.EXTRA_TEXT,  "Spot On Opportunities presents to you:\n" + cards.get(position).getLink() + "\n" + cards.get(position).getDescription());
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+            }else
+                Toast.makeText(Cards.this, "No Email app found!", Toast.LENGTH_SHORT).show();
+
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
