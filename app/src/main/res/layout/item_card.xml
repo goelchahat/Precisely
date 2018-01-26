@@ -8,7 +8,8 @@
     android:layout_margin="5dp"
     android:clickable="true"
     android:orientation="vertical"
-    card_view:cardCornerRadius="5dp">
+    card_view:cardCornerRadius="5dp"
+    android:focusable="true">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -21,10 +22,11 @@
             <ImageView
                 android:id="@+id/event_image"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="centerInside"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 android:src="@mipmap/j_bezos"
+                android:background="#dff0f0f0"
                 />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -62,18 +64,19 @@
                         android:id="@+id/icon_poster"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@mipmap/logomauka123"
+                        android:scaleType="fitXY"
                         />
                     <TextView
                         android:id="@+id/name_poster"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textSize="12sp"
+                        android:textSize="11sp"
                         android:textColor="#101010"
                         android:paddingLeft="5dp"
                         android:layout_toRightOf="@+id/icon_poster"
-                        android:maxLength="15"
+                        android:maxLength="16"
                         android:ellipsize="end"
                         />
                     <TextView
@@ -90,7 +93,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textSize="12sp"
+                        android:textSize="11sp"
                         android:paddingLeft="5dp"
                         android:layout_toRightOf="@+id/pipe"
                         />
@@ -102,7 +105,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             app:bmb_buttonRadius="20dp"
             app:bmb_shadowEffect="false"

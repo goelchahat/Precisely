@@ -1,30 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.pankaj.maukascholars">
+    package="com.pankaj.maukascholars">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
+        android:name=".application.VolleyHandling"
         android:allowBackup="true"
-        android:icon="@mipmap/sop"
+        android:icon="@mipmap/logomauka123"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".activity.SignUp">
+        android:theme="@style/NoActionAppTheme">
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.SplashScreen"
+            android:theme="@style/NoActionAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.SignUp" />
+        <activity android:name=".activity.Filters" />
         <activity android:name=".activity.Cards" />
-        <activity android:name=".activity.LoginActivity" />
-        <!-- <activity android:name=".activity.MainActivity"></activity> -->
         <activity android:name=".activity.CalendarActivity" />
-        <activity android:name=".activity.ProfileActivity"></activity>
+        <activity android:name=".activity.ProfileActivity" />
+        <activity android:name=".activity.VerticalViewPagerActivity"/>
+        <activity android:name=".activity.VerticalViewPagerWithPageAdapterActivity"/>
+        <activity android:name=".util.alarm.AlarmActivity" />
     </application>
 
 </manifest>
