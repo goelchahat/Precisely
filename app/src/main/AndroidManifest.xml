@@ -54,6 +54,7 @@
         <activity android:name=".activity.VerticalViewPagerActivity"/>
         <activity android:name=".activity.VerticalViewPagerWithPageAdapterActivity"/>
         <activity android:name=".util.alarm.AlarmActivity" />
+
     </application>
 
 </manifest>

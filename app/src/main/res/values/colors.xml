@@ -3,6 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="graylight">#fafafa</color>
+    <color name="skyblue">#09c6df</color>
     <array name="rainbow">
         <item>@color/colorPrimary</item>
         <item>@color/colorPrimaryDark</item>
